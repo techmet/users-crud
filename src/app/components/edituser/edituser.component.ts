@@ -18,7 +18,7 @@ export class EdituserComponent implements OnInit {
   ngOnInit() {
     const userId = localStorage.getItem('editUserId');
     if (!userId) {
-      alert('Invalid action.')
+      alert('Invalid action.');
       this.router.navigate(['list']);
       return;
     }
@@ -37,14 +37,18 @@ export class EdituserComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.updateUser(this.editForm.value)
-      .subscribe(
-        data => {
-          this.router.navigate(['list']);
-        },
-        error => {
-          alert(error);
-        });
+    if (this.editForm.valid) {
+      this.userService.updateUser(this.editForm.value)
+        .subscribe(
+          data => {
+            this.router.navigate(['list']);
+          },
+          error => {
+            alert(error);
+          });
+    } else {
+      alert('Please enter details');
+    }
   }
 
 }

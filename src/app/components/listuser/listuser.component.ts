@@ -31,9 +31,4 @@ export class ListuserComponent implements OnInit {
     localStorage.setItem('editUserId', user.id.toString());
     this.router.navigate(['edit']);
   }
-
-  addUser(): void {
-    this.router.navigate(['add']);
-  }
-
 }

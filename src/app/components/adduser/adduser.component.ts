@@ -25,10 +25,14 @@ export class AdduserComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.createUser(this.addForm.value)
-      .subscribe(data => {
-        this.router.navigate(['list']);
-      });
+    if (this.addForm.valid) {
+      this.userService.createUser(this.addForm.value)
+        .subscribe(data => {
+          this.router.navigate(['list']);
+        });
+    } else {
+      alert('Please enter details');
+    }
   }
 
 }
